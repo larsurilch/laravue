@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('paises/listing', 'PaisesController@listing');
+Route::get('estados/listing', 'EstadosController@listing');
+Route::get('cidades/listing/{cidade}', 'CidadesController@listing');
+
+Route::resource('paises', 'PaisesController', ['only' => ['index']]);
+Route::resource('estados', 'EstadosController', ['only' => ['index']]);
+Route::resource('cidades', 'CidadesController', ['only' => ['index']]);
