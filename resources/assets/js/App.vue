@@ -1,21 +1,18 @@
 <template>
     <div id="app">
+        <navbar></navbar>
         <div class="ui main container">
-            <h4>Iniciando com o Vue.js</h4>
-            <div class="ui input">
-                <input type="text" name="titulo" v-model="titulo"/>
-            </div>
-            <div>{{ titulo }}</div>
+            <router-view></router-view>
         </div>
     </div>
 </template>
 
 <script>
+    import Navbar from './components/shared/navbar/Navbar.vue'
+
     export default {
-        data () {
-            return {
-                titulo: ''
-            }
+        components: {
+            'navbar': Navbar
         }
     }
 </script>

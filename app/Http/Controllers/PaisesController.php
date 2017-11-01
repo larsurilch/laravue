@@ -55,7 +55,7 @@ class PaisesController extends Controller
                 'column' => $column
             ],
             'filters' => [
-                $descricao => 'descricao'
+                'descricao' => $descricao
             ]
         ];
 
