@@ -5,6 +5,8 @@
             Locais <i class="dropdown icon"></i>
             <div class="menu">
                 <router-link to="/paises" class="item">Países</router-link>
+                <router-link to="/estados" class="item">Estados</router-link>
+                <router-link to="/cidades" class="item">Cidades</router-link>
             </div>
         </div>
     </div>
