@@ -1,0 +1,11 @@
+{
+  "MSG001":"O registro foi salvo com sucesso!",
+  "MSG002":"O registro foi atualizado com sucesso!",
+  "MSG003":"O registro foi apagado com sucesso!",
+  "MSG004":"O registro não pode ser salvo!!! Verifique os erros e tente novamente.",
+  "MSG005":"O registro não pode ser apagado!!! Há informações cadastradas com esse registro.",
+  "MSG006":"A autenticação não pode ser efetuada, verifique suas credenciais.",
+  "MSG007":"Você foi desconectado com sucesso.",
+  "MSG008":"Você não possui uma sessão ativa. Desconecte e efetue o login novamente.",
+  "MSG009":"Você não está autorizado a executar essa ação."
+}

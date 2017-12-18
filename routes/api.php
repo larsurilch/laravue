@@ -21,6 +21,10 @@ Route::get('paises/listing', 'PaisesController@listing');
 Route::get('estados/listing', 'EstadosController@listing');
 Route::get('cidades/listing/{cidade}', 'CidadesController@listing');
 
+Route::get('marcas/listing', 'MarcasController@listing');
+
+Route::resource('marcas', 'MarcasController', ['except' => ['create', 'edit']]);
+
 Route::resource('paises', 'PaisesController', ['only' => ['index']]);
 Route::resource('estados', 'EstadosController', ['only' => ['index']]);
 Route::resource('cidades', 'CidadesController', ['only' => ['index']]);
