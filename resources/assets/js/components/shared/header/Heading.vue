@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<h2 class="ui header floated left">
+        <message-box :status="status" :message="message"></message-box>
+        <router-link :to="url" class="ui right floated button" :class="color" v-if="url">{{ label }}</router-link>
+        <h2 class="ui header floated left">
             <i :class="icone" class="icon"></i>
             <div class="content">
                 {{ titulo }}
@@ -12,6 +14,8 @@
 </template>
 
 <script>
+    import MessageBox from '../message-box/MessageBox.vue'
+
 	export default {
 		props: {
 			icone: {
@@ -25,7 +29,15 @@
 			subtitulo: {
 				required: true,
 				type: String
-			}
-		}
+			},
+            url: String,
+            label: String,
+            color: String,
+            status: String,
+            message: String
+		},
+        components: {
+		    'message-box': MessageBox
+        }
 	}
 </script>

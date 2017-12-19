@@ -9,5 +9,11 @@
                 <router-link to="/cidades" class="item">Cidades</router-link>
             </div>
         </div>
+        <div class="ui simple dropdown item">
+            Básico <i class="dropdown icon"></i>
+            <div class="menu">
+                <router-link to="/marcas" class="item">Marcas</router-link>
+            </div>
+        </div>
     </div>
 </template>
