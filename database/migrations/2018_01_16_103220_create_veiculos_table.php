@@ -19,7 +19,7 @@ class CreateVeiculosTable extends Migration
             $table->integer('proprietario_id')->unsigned();
             $table->string('placa', 10);
             $table->integer('ano');
-            $table->string('quilometragem', 45);
+            $table->string('quilometragem', 45)->nullable();
             $table->string('combustivel', 15);
             $table->integer('marca_id')->unsigned();
             $table->date('data_cotacao');

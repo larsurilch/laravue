@@ -24,7 +24,7 @@ class ProprietarioRequest extends Request
         $rules = [
             'nome' => 'required|min:3|max:150',
             'tipo' => 'required|min:2|max:2',
-            'documento' => 'required|cpfcnpj|min:8|max:25|unique:proprietarios,documento',
+            'documento' => 'required|min:8|max:25|unique:proprietarios,documento',
             'fone_principal' => 'required|required|min:5|max:18',
             'endereco' => 'required|min:5|max:150',
             'complemento' => 'nullable|min:5|max:80',
@@ -35,7 +35,7 @@ class ProprietarioRequest extends Request
         ];
 
         if($this->method() == 'PATCH' || $this->method() == 'PUT') {
-            $rules['documento'] .= ',' . $this->segment(2);
+            $rules['documento'] .= ',' . $this->id;
         }
 
         return $rules;

@@ -17,7 +17,7 @@ class Veiculo extends BaseModel
 
     public function setDataCotacaoAttribute($v)
     {
-        $this->attributes['data_entrada'] = toSQL($v);
+        $this->attributes['data_cotacao'] = toSQL($v);
     }
 
     public function proprietario()

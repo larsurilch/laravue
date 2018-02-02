@@ -15,5 +15,7 @@
                 <router-link to="/marcas" class="item">Marcas</router-link>
             </div>
         </div>
+        <router-link to="/proprietarios" class="item">Proprietários</router-link>
+        <router-link to="/veiculos" class="item">Veículos</router-link>
     </div>
 </template>
