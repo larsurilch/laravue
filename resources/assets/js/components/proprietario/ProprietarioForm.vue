@@ -53,13 +53,13 @@
                 </form-error>
                 <form-error classe="required six wide" :field="errors.estado_id">
                     <label>Estado</label>
-                    <input type="text" name="estado_id" v-model="proprietario.estado_id" autocomplete="off">
+                    <dropdown v-model="proprietario.estado_id" :itens="estados" @loadCombo="loadCidade"></dropdown>
                 </form-error>
             </div>
             <div class="one field">
                 <form-error classe="required six wide" :field="errors.cidade_id">
                     <label>Cidade</label>
-                    <input type="text" name="cidade_id" v-model="proprietario.cidade_id" autocomplete="off">
+                    <dropdown v-model="proprietario.cidade_id" :itens="cidades" class="dropdown-cidade"></dropdown>
                 </form-error>
             </div>
             <submit-button :submitted="submitted">
@@ -77,15 +77,20 @@
     import FormError from '../shared/form-error/FormError.vue'
     import SubmitButton from '../shared/submit-button/SubmitButton.vue'
     import Phone from '../shared/forms/Phone.vue'
+    import Dropdown from '../shared/forms/Dropdown.vue'
     import Focus from '../../directives/Focus'
     import { VueMaskDirective } from 'v-mask'
     import Proprietario from '../../domain/proprietario/Proprietario'
     import GlobalService from '../../domain/GlobalService'
+    import EstadoService from '../../domain/estado/EstadoService'
+    import CidadeService from '../../domain/cidade/CidadeService'
 
     export default {
         data () {
             return {
                 proprietario: new Proprietario(),
+                estados: [],
+                cidades: [],
                 id: this.$route.params.id,
                 message: null,
                 status: null,
@@ -96,6 +101,11 @@
         },
         created () {
             this.service = new GlobalService(this.$router)
+            this.estados = new EstadoService(this.$resource)
+
+            this.estados
+                .lista()
+                .then(estados => this.estados = estados.list)
 
             if(this.id) {
                 this.show()
@@ -109,7 +119,8 @@
             'heading': Heading,
             'form-error': FormError,
             'submit-button': SubmitButton,
-            'phone': Phone
+            'phone': Phone,
+            'dropdown': Dropdown
         },
         methods: {
             show() {
@@ -140,6 +151,27 @@
                         }
 
                         this.submitted = false
+                    })
+            },
+
+            loadCidade () {
+                let cidade_id = this.proprietario.cidade_id
+
+                this.cidades = new CidadeService(this.$resource)
+                this.cidades
+                    .busca(this.proprietario.estado_id)
+                    .then(cidades => {
+                        this.cidades = cidades.list
+
+                        $('.dropdown-cidade').dropdown('clear')
+
+                        setTimeout(function () {
+                            $('.dropdown-cidade').dropdown('set selected', cidade_id)
+                        }, 10)
+
+                        if(!(cidade_id in this.cidades)) {
+                            this.proprietario.cidade_id = ''
+                        }
                     })
             },
 

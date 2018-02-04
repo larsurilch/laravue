@@ -15,10 +15,9 @@
                     <div class="column"><b>Complemento:</b> {{ proprietario.complemento }}</div>
                     <div class="column"><b>Bairro:</b> {{ proprietario.bairro }}</div>
                     <div class="column"><b>CEP:</b> {{ proprietario.cep }}</div>
-                    <div class="column"><b>Estado:</b> {{ proprietario.estado_id }}</div>
+                    <div class="column"><b>Cidade:</b> {{ proprietario.cidade.nome }}/{{ proprietario.cidade.uf }}</div>
                 </div>
                 <div class="four column row">
-                    <div class="column"><b>Cidade:</b> {{ proprietario.cidade_id }}</div>
                     <div class="column"><b>Criado:</b> {{ proprietario.created_at }}</div>
                     <div class="column"><b>Modificado:</b> {{ proprietario.updated_at }}</div>
                 </div>

@@ -76,7 +76,7 @@ class ProprietariosController extends Controller
 
     public function show($id)
     {
-        $proprietario = $this->proprietario->find($id);
+        $proprietario = $this->proprietario->with('cidade')->find($id);
 
         if(count($proprietario) > 0)
             return response()->json($proprietario);
