@@ -10,7 +10,7 @@
         <data-grid :thead="thead" :params="params" @loadData="index" :colspan="7">
             <tr v-for="proprietario in proprietarios">
                 <td>{{ proprietario.nome }}</td>
-                <td>{{ proprietario.tipo }}</td>
+                <td>{{ proprietario.tipo | person }}</td>
                 <td>{{ proprietario.documento }}</td>
                 <td>{{ proprietario.fone_principal }}</td>
                 <td>

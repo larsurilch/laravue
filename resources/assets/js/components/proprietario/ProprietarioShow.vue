@@ -6,7 +6,7 @@
             <h4 class="ui horizontal divider header">{{ proprietario.nome }}</h4>
             <div class="ui vertically divided padded grid">
                 <div class="four column row">
-                    <div class="column"><b>Tipo:</b> {{ proprietario.tipo }}</div>
+                    <div class="column"><b>Tipo:</b> {{ proprietario.tipo | person }}</div>
                     <div class="column"><b>Documento:</b> {{ proprietario.documento }}</div>
                     <div class="column"><b>Telefone principal:</b> {{ proprietario.fone_principal }}</div>
                     <div class="column"><b>Endereço:</b> {{ proprietario.endereco }}</div>

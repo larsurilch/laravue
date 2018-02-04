@@ -26,6 +26,8 @@ const router = new VueRouter({
     mode: 'history'
 });
 
+Vue.filter('person', require('./filters/person'));
+
 new Vue({
     el: '#app',
     router,

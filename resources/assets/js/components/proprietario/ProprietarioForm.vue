@@ -10,20 +10,28 @@
                 </form-error>
                 <form-error classe="required three wide" :field="errors.tipo">
                     <label>Tipo</label>
-                    <select v-model="proprietario.tipo">
+                    <select v-model="proprietario.tipo" @change="clearField">
                         <option value="PJ">Pessoa Jurídica</option>
                         <option value="PF">Pessoa Física</option>
                     </select>
                 </form-error>
-                <form-error classe="required three wide" :field="errors.documento">
-                    <label>Documento:</label>
-                    <input type="text" name="documento" v-model="proprietario.documento" autocomplete="off">
-                </form-error>
+                <div class="required three wide" v-if="proprietario.tipo === 'PJ'">
+                    <form-error :field="errors.documento">
+                        <label>CNPJ:</label>
+                        <input type="text" name="documento" v-mask="'##.###.###/###-##'" v-model="proprietario.documento" autocomplete="off">
+                    </form-error>
+                </div>
+                <div class="required three wide" v-else>
+                    <form-error :field="errors.documento">
+                        <label>CPF:</label>
+                        <input type="text" name="documento" v-mask="'###.###.###-##'" v-model="proprietario.documento" autocomplete="off">
+                    </form-error>
+                </div>
             </div>
             <div class="three fields">
                 <form-error classe="required three wide" :field="errors.fone_principal">
                     <label>Telefone principal:</label>
-                    <input type="text" name="fone_principal" v-model="proprietario.fone_principal" autocomplete="off">
+                    <phone name="fone_principal" v-model="proprietario.fone_principal"></phone>
                 </form-error>
                 <form-error classe="required eight wide" :field="errors.endereco">
                     <label>Endereço:</label>
@@ -41,7 +49,7 @@
                 </form-error>
                 <form-error classe="four wide" :field="errors.cep">
                     <label>CEP:</label>
-                    <input type="text" name="cep" v-model="proprietario.cep" autocomplete="off">
+                    <input type="text" name="cep" v-mask="'##.###-###'" v-model="proprietario.cep" autocomplete="off">
                 </form-error>
                 <form-error classe="required six wide" :field="errors.estado_id">
                     <label>Estado</label>
@@ -68,7 +76,9 @@
     import Heading from '../shared/header/Heading.vue'
     import FormError from '../shared/form-error/FormError.vue'
     import SubmitButton from '../shared/submit-button/SubmitButton.vue'
+    import Phone from '../shared/forms/Phone.vue'
     import Focus from '../../directives/Focus'
+    import { VueMaskDirective } from 'v-mask'
     import Proprietario from '../../domain/proprietario/Proprietario'
     import GlobalService from '../../domain/GlobalService'
 
@@ -92,12 +102,14 @@
             }
         },
         directives: {
-            focus: Focus
+            focus: Focus,
+            mask: VueMaskDirective
         },
         components: {
             'heading': Heading,
             'form-error': FormError,
-            'submit-button': SubmitButton
+            'submit-button': SubmitButton,
+            'phone': Phone
         },
         methods: {
             show() {
@@ -129,6 +141,10 @@
 
                         this.submitted = false
                     })
+            },
+
+            clearField () {
+                this.proprietario.documento = ''
             }
         },
         computed: {
