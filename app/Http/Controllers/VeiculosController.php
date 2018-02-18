@@ -84,7 +84,7 @@ class VeiculosController extends Controller
 
     public function show($id)
     {
-        $veiculo = $this->veiculo->find($id);
+        $veiculo = $this->veiculo->with('pais', 'proprietario', 'marca')->find($id);
 
         if(count($veiculo) > 0)
             return response()->json($veiculo);

@@ -1,6 +1,6 @@
 export default class Proprietario {
     constructor(nome = '', tipo = '', documento = '', fone_principal = '', endereco = '', complemento = '', bairro = '',
-                cep = '', estado_id = '', cidade_id = '') {
+                cep = '', estado_id = '', cidade_id = '', cidade = Object) {
         this.nome = nome;
         this.tipo = tipo;
         this.documento = documento;
@@ -11,5 +11,6 @@ export default class Proprietario {
         this.cep = cep;
         this.estado_id = estado_id;
         this.cidade_id = cidade_id;
+        this.cidade = cidade;
     }
 }

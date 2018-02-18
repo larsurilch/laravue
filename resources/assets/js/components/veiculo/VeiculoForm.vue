@@ -10,21 +10,21 @@
                 </form-error>
                 <form-error classe="required six wide" :field="errors.proprietario_id">
                     <label>Proprietário:</label>
-                    <input type="text" name="proprietario_id" v-model="veiculo.proprietario_id" autocomplete="off">
+                    <dropdown v-model="veiculo.proprietario_id" :itens="proprietarios"></dropdown>
                 </form-error>
                 <form-error classe="required three wide" :field="errors.placa">
                     <label>Placa:</label>
-                    <input type="text" name="placa" v-model="veiculo.placa" autocomplete="off">
+                    <input type="text" name="placa" v-mask="'AAA-####'" v-model="veiculo.placa" autocomplete="off">
                 </form-error>
                 <form-error classe="required three wide" :field="errors.ano">
                     <label>Ano:</label>
-                    <input type="text" name="ano" v-model="veiculo.ano" autocomplete="off">
+                    <input type="text" name="ano" v-mask="'####'" v-model="veiculo.ano" autocomplete="off">
                 </form-error>
             </div>
             <div class="five fields">
                 <form-error classe="three wide" :field="errors.quilometragem">
                     <label>Quilometragem:</label>
-                    <input type="text" name="quilometragem" v-model="veiculo.quilometragem" autocomplete="off">
+                    <input type="text" name="quilometragem" v-mask="'#?#######'" v-model="veiculo.quilometragem" autocomplete="off">
                 </form-error>
                 <form-error classe="required three wide" :field="errors.combustivel">
                     <label>Combustível:</label>
@@ -32,21 +32,21 @@
                 </form-error>
                 <form-error classe="required four wide" :field="errors.marca_id">
                     <label>Marca:</label>
-                    <input type="text" name="marca_id" v-model="veiculo.marca_id" autocomplete="off">
+                    <dropdown v-model="veiculo.marca_id" :itens="marcas"></dropdown>
                 </form-error>
                 <form-error classe="required three wide" :field="errors.data_cotacao">
                     <label>Data da cotação:</label>
-                    <input type="text" name="data_cotacao" v-model="veiculo.data_cotacao" autocomplete="off">
+                    <calendar v-model="veiculo.data_cotacao"></calendar>
                 </form-error>
                 <form-error classe="three wide" :field="errors.preco">
                     <label>Preço:</label>
-                    <input type="text" name="preco" v-model="veiculo.preco" autocomplete="off">
+                    <money type="text" name="preco" v-model="veiculo.preco" v-bind="money" autocomplete="off"></money>
                 </form-error>
             </div>
             <div class="two fields">
                 <form-error classe="required four wide" :field="errors.pais_id">
                     <label>País:</label>
-                    <input type="text" name="pais_id" v-model="veiculo.pais_id" autocomplete="off">
+                    <dropdown v-model="veiculo.pais_id" :itens="paises"></dropdown>
                 </form-error>
                 <form-error classe="required twelve wide" :field="errors.descricao">
                     <label>Descrição:</label>
@@ -68,13 +68,31 @@
     import FormError from '../shared/form-error/FormError.vue'
     import SubmitButton from '../shared/submit-button/SubmitButton.vue'
     import Focus from '../../directives/Focus'
+    import Dropdown from '../shared/forms/Dropdown.vue'
+    import Calendar from '../shared/forms/Calendar.vue'
+    import { VueMaskDirective } from 'v-mask'
+    import { Money } from 'v-money'
     import Veiculo from '../../domain/veiculo/Veiculo'
+    import PaisService from '../../domain/pais/PaisService'
+    import MarcaService from '../../domain/marca/MarcaService'
+    import ProprietarioService from '../../domain/proprietario/ProprietarioService'
     import GlobalService from '../../domain/GlobalService'
 
     export default {
         data () {
             return {
                 veiculo: new Veiculo(),
+                money: {
+                    decimal: ',',
+                    thousands: '.',
+                    prefix: 'R$ ',
+                    suffix: '',
+                    precision: 2,
+                    masked: false
+                },
+                paises: [],
+                marcas: [],
+                proprietarios: [],
                 id: this.$route.params.id,
                 message: null,
                 status: null,
@@ -85,18 +103,37 @@
         },
         created () {
             this.service = new GlobalService(this.$router)
+            this.paises = new PaisService(this.$resource)
+            this.marcas = new MarcaService(this.$resource)
+            this.proprietarios = new ProprietarioService(this.$resource)
+
+            this.paises
+                .lista()
+                .then(paises => this.paises = paises.list)
+
+            this.marcas
+                .lista()
+                .then(marcas => this.marcas = marcas.list)
+
+            this.proprietarios
+                .lista()
+                .then(proprietarios => this.proprietarios = proprietarios.list)
 
             if(this.id) {
                 this.show()
             }
         },
         directives: {
-            focus: Focus
+            focus: Focus,
+            mask: VueMaskDirective
         },
         components: {
             'heading': Heading,
             'form-error': FormError,
-            'submit-button': SubmitButton
+            'submit-button': SubmitButton,
+            'dropdown': Dropdown,
+            'calendar': Calendar,
+            Money
         },
         methods: {
             show() {

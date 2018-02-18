@@ -11,6 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
     
     require("../dist/semantic/semantic");
+    require("semantic-ui-calendar/dist/calendar.min");
 } catch (e) {}
 
 /**

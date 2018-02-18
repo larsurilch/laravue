@@ -1,6 +1,7 @@
 export default class Veiculo {
     constructor(modelo = '', proprietario_id = '', placa = '', ano = '', quilometragem = '', combustivel = '', marca_id = '',
-                data_cotacao = new Date().toLocaleDateString("pt-BR"), preco = 0.00, pais_id = '', descricao = '') {
+                data_cotacao = new Date().toLocaleDateString("pt-BR"), preco = 0.00, pais_id = '', descricao = '', pais = Object,
+                proprietario = Object, marca = Object) {
         this.modelo = modelo;
         this.proprietario_id = proprietario_id;
         this.placa = placa;
@@ -12,5 +13,8 @@ export default class Veiculo {
         this.preco = preco;
         this.pais_id = pais_id;
         this.descricao = descricao;
+        this.pais = pais;
+        this.proprietario = proprietario;
+        this.marca = marca;
     }
 }

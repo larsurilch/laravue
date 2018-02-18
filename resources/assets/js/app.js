@@ -27,6 +27,7 @@ const router = new VueRouter({
 });
 
 Vue.filter('person', require('./filters/person'));
+Vue.filter('currency', require('./filters/currency'));
 
 new Vue({
     el: '#app',
