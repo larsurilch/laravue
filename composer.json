@@ -6,9 +6,10 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "geekcom/validator-docs": "^1.1",
         "fideloper/proxy": "~3.3",
+        "geekcom/validator-docs": "^1.1",
         "laravel/framework": "5.5.*",
+        "laravel/passport": "~4.0",
         "laravel/tinker": "~1.0"
     },
     "require-dev": {
