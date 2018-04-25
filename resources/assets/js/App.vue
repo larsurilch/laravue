@@ -9,6 +9,7 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     import Navbar from './components/shared/navbar/Navbar.vue'
     import Modal from './components/shared/modal/Modal.vue'
 
@@ -16,6 +17,27 @@
         components: {
             'navbar': Navbar,
             'modal': Modal
+        },
+
+        computed: mapState({
+            UsuarioStore: state => state.UsuarioStore
+        }),
+
+        created () {
+            this.checkIsAuthenticated()
+            this.getAuthenticatedUser()
+        },
+
+        methods: {
+            checkIsAuthenticated () {
+                const authState = this.$auth.isAuthenticated()
+                this.$store.dispatch('setAuthState', authState)
+            },
+
+            getAuthenticatedUser () {
+                const dataUser = this.$auth.getAuthenticatedUser()
+                this.$store.dispatch('setData', dataUser)
+            }
         }
     }
 </script>

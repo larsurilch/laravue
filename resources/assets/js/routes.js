@@ -1,3 +1,5 @@
+import Login from './components/authentication/Login.vue'
+
 import Welcome from './components/welcome/Welcome.vue'
 import PaisIndex from './components/pais/PaisIndex.vue'
 import EstadoIndex from './components/estado/EstadoIndex.vue'
@@ -13,67 +15,122 @@ import VeiculoShow from './components/veiculo/VeiculoShow.vue'
 
 export const routes = [
     {
-        path: '*',
-        component: Welcome
+        path: '/login',
+        component: Login,
+        meta: {
+            forGuest: true
+        }
     },
     {
         path: '/welcome',
-        component: Welcome
+        component: Welcome,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/paises',
-        component: PaisIndex
+        component: PaisIndex,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/estados',
-        component: EstadoIndex
+        component: EstadoIndex,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/cidades',
-        component: CidadeIndex
+        component: CidadeIndex,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/marcas',
-        component: MarcaIndex
+        component: MarcaIndex,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/marcas/create',
-        component: MarcaForm
+        component: MarcaForm,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/marcas/:id/edit',
-        component: MarcaForm
+        component: MarcaForm,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/proprietarios',
-        component: ProprietarioIndex
+        component: ProprietarioIndex,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/proprietarios/create',
-        component: ProprietarioForm
+        component: ProprietarioForm,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/proprietarios/:id/edit',
-        component: ProprietarioForm
+        component: ProprietarioForm,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/proprietarios/:id',
-        component: ProprietarioShow
+        component: ProprietarioShow,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/veiculos',
-        component: VeiculoIndex
+        component: VeiculoIndex,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/veiculos/create',
-        component: VeiculoForm
+        component: VeiculoForm,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/veiculos/:id/edit',
-        component: VeiculoForm
+        component: VeiculoForm,
+        meta: {
+            forAuth: true
+        }
     },
     {
         path: '/veiculos/:id',
-        component: VeiculoShow
+        component: VeiculoShow,
+        meta: {
+            forAuth: true
+        }
+    },
+    {
+        path: '*',
+        component: Login,
+        meta: {
+            forGuest: true
+        }
     }
 ];
