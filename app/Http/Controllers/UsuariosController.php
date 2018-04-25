@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Usuario;
 use App\Http\Requests\UsuarioRequest;
+use Illuminate\Support\Facades\Cache;
 
 class UsuariosController extends Controller
 {
@@ -155,6 +156,7 @@ class UsuariosController extends Controller
         $usuario = [
             'id' => $auth->id,
             'perfil_id' => $auth->perfil_id,
+            'email' => $auth->email,
             'acl' => $acl
         ];
 
