@@ -1,30 +1,24 @@
 <template>
     <div>
-        <heading icone="spy" titulo="Proprietário" subtitulo="Listagem de proprietários" url="/proprietarios/create"
-                 label="Novo" color="blue" :status="status" :message="message" :verify="permission('proprietarios.store')"></heading>
+        <heading icone="lock" titulo="Perfis" subtitulo="Listagem de perfis" url="/perfis/create"
+                 label="Novo" color="blue" :status="status" :message="message" :verify="permission('perfis.store')"></heading>
         <search :total="params.total" @click.native="index">
             <div class="field">
-                <input v-model="filters.nome" type="text" placeholder="Nome">
+                <input v-model="filters.descricao" type="text" placeholder="Nome">
             </div>
         </search>
-        <data-grid :thead="thead" :params="params" @loadData="index" :colspan="7">
-            <tr v-for="proprietario in proprietarios">
-                <td>{{ proprietario.nome }}</td>
-                <td>{{ proprietario.tipo | person }}</td>
-                <td>{{ proprietario.documento }}</td>
-                <td>{{ proprietario.fone_principal }}</td>
+        <data-grid :thead="thead" :params="params" @loadData="index" :colspan="5">
+            <tr v-for="perfil in perfis">
+                <td>{{ perfil.descricao }}</td>
+                <td>{{ perfil.created_at }}</td>
+                <td>{{ perfil.updated_at }}</td>
                 <td>
-                    <router-link v-if="permission('proprietarios.show')" class="ui icon button violet" :to="`/proprietarios/${proprietario.id}`">
-                        <i class="info icon"></i>
-                    </router-link>
-                </td>
-                <td>
-                    <router-link v-if="permission('proprietarios.update')" class="ui icon button green" :to="`/proprietarios/${proprietario.id}/edit`">
+                    <router-link v-if="permission('perfis.update')" class="ui icon button green" :to="`/perfis/${perfil.id}/edit`">
                         <i class="write icon"></i>
                     </router-link>
                 </td>
                 <td>
-                    <button v-if="permission('proprietarios.destroy')" class="ui icon button red" @click="destroy(proprietario)">
+                    <button v-if="permission('perfis.destroy')" class="ui icon button red" @click="destroy(perfil)">
                         <i class="trash icon"></i>
                     </button>
                 </td>
@@ -43,26 +37,25 @@
     export default {
         data () {
             return {
-                proprietarios: [],
+                perfis: [],
                 params: {
                     total: 0,
                     per_page: 30,
                     current_page: 1,
-                    column: 'nome',
+                    column: 'descricao',
                     direction: 'asc'
                 },
                 thead: [
-                    { title: 'Proprietário', column: 'nome', direction: 'desc', sortable: true },
-                    { title: 'Tipo', column: 'tipo', direction: 'desc', sortable: false },
-                    { title: 'Documento', column: 'documento', direction: 'desc', sortable: false },
-                    { title: 'Telefone', column: 'fone_principal', direction: 'desc', sortable: false },
-                    { title: '', column: '', direction: '', sortable: false, style: 'two wide', columns: 3 }
+                    { title: 'Descrição', column: 'descricao', direction: 'desc', sortable: true },
+                    { title: 'Criado', column: 'created_at', direction: 'desc', sortable: false, style: 'three wide' },
+                    { title: 'Modificado', column: 'updated_at', direction: 'desc', sortable: false, style: 'three wide' },
+                    { title: '', column: '', direction: '', sortable: false, style: 'two wide', columns: 2 }
                 ],
                 message: null,
                 status: null,
                 success: true,
                 filters: {
-                    nome: ''
+                    descricao: ''
                 }
             }
         },
@@ -82,21 +75,21 @@
                         this.message = response.body.message
                         this.status = response.body.status
                     } else {
-                        this.proprietarios = response.data.proprietarios.data
+                        this.perfis = response.data.perfis.data
                         this.filters = response.data.filters
                         this.params = response.data.params
                     }
                 })
             },
 
-            destroy(proprietario) {
+            destroy(perfil) {
                 $('.small.modal')
                     .modal({
                         onShow: function () {
-                            $('.record-delete').empty().text(proprietario.nome)
+                            $('.record-delete').empty().text(perfil.descricao)
                         },
                         onApprove: function () {
-                            this.$http.delete(`api/proprietarios/${proprietario.id}`)
+                            this.$http.delete(`api/perfis/${perfil.id}`)
                                 .then(response => {
                                     this.success = response.body.success
                                     this.message = response.body.message
@@ -114,8 +107,8 @@
                 let per_page = `&per_page=${this.params.per_page}`
                 let direction = `&direction=${this.params.direction}`
                 let column = `&column=${this.params.column}`
-                let nome = this.filters.nome === '' ? '' : `&nome=${this.filters.nome}`
-                return `api/proprietarios${current_page}${per_page}${direction}${column}${nome}`
+                let descricao = this.filters.descricao === '' ? '' : `&descricao=${this.filters.descricao}`
+                return `api/perfis${current_page}${per_page}${direction}${column}${descricao}`
             }
         }
     }

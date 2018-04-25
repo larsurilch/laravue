@@ -1,7 +1,7 @@
 <template>
     <div>
         <heading icone="car" titulo="Veículo" subtitulo="Listagem de veículos"
-                 url="/veiculos/create" label="Novo" color="blue" :status="status" :message="message"></heading>
+                 url="/veiculos/create" label="Novo" color="blue" :status="status" :message="message" :verify="permission('veiculos.store')"></heading>
         <search :total="params.total" @click.native="index">
             <div class="four wide field">
                 <input v-model="filters.modelo" type="text" placeholder="Modelo">
@@ -17,17 +17,17 @@
                 <td>{{ veiculo.placa }}</td>
                 <td>{{ veiculo.ano }}</td>
                 <td>
-                    <router-link class="ui icon button violet" :to="`/veiculos/${veiculo.id}`">
+                    <router-link v-if="permission('veiculos.show')" class="ui icon button violet" :to="`/veiculos/${veiculo.id}`">
                         <i class="info icon"></i>
                     </router-link>
                 </td>
                 <td>
-                    <router-link class="ui icon button green" :to="`/veiculos/${veiculo.id}/edit`">
+                    <router-link v-if="permission('veiculos.update')" class="ui icon button green" :to="`/veiculos/${veiculo.id}/edit`">
                         <i class="write icon"></i>
                     </router-link>
                 </td>
                 <td>
-                    <button class="ui icon red button" @click="destroy(veiculo)">
+                    <button v-if="permission('veiculos.destroy')" class="ui icon red button" @click="destroy(veiculo)">
                         <i class="trash icon"></i>
                     </button>
                 </td>
@@ -41,6 +41,7 @@
     import Search from '../shared/header/Search.vue'
     import DataGrid from '../shared/data-grid/DataGrid.vue'
     import flashMessage from '../../mixins/flashMessage'
+    import permission from '../../mixins/permission'
 
     export default {
         data () {
@@ -69,7 +70,7 @@
                 }
             }
         },
-        mixins: [flashMessage],
+        mixins: [flashMessage, permission],
         created () {
             this.index()
         },

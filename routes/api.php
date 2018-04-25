@@ -20,6 +20,9 @@ Route::get('cidades/listing/{cidade}', 'CidadesController@listing');
 Route::get('marcas/listing', 'MarcasController@listing');
 Route::get('proprietarios/listing', 'ProprietariosController@listing');
 
+Route::get('perfis/listing', 'PerfisController@listing');
+Route::get('acoes/listing', 'AcoesController@listing');
+
 Route::get('autenticado', 'UsuariosController@authenticated')->middleware('auth:api');
 Route::post('logout', 'UsuariosController@logout');
 Route::post('oauth/token', 'Auth\CustomAccessTokenController@issueUserToken');

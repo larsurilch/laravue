@@ -1,7 +1,7 @@
 <template>
     <div>
         <heading icone="spy" titulo="Proprietário" subtitulo="Detalhes do proprietário"
-                 url="/proprietarios" label="Voltar" color="violet" :status="status" :message="message"></heading>
+                 url="/proprietarios" label="Voltar" color="violet" :status="status" :message="message" :verify="permission('proprietarios.index')"></heading>
         <div class="ui piled segment">
             <h4 class="ui horizontal divider header">{{ proprietario.nome }}</h4>
             <div class="ui vertically divided padded grid">
@@ -29,6 +29,7 @@
 <script>
     import Heading from '../shared/header/Heading.vue'
     import Proprietario from '../../domain/proprietario/Proprietario'
+    import permission from '../../mixins/permission'
 
     export default {
         data () {
@@ -39,6 +40,7 @@
                 status: null,
             }
         },
+        mixins: [permission],
         created () {
             this.show()
         },

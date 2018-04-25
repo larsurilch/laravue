@@ -1,7 +1,7 @@
 <template>
     <div>
         <heading icone="spy" titulo="Proprietário" :subtitulo="addSubtitle"
-                 url="/proprietarios" label="Voltar" color="violet" :status="status" :message="message"></heading>
+                 url="/proprietarios" label="Voltar" color="violet" :status="status" :message="message" :verify="permission('proprietarios.index')"></heading>
         <form class="ui form" @submit.prevent="save">
             <div class="three fields">
                 <form-error classe="required ten wide" :field="errors.nome">
@@ -84,6 +84,7 @@
     import GlobalService from '../../domain/GlobalService'
     import EstadoService from '../../domain/estado/EstadoService'
     import CidadeService from '../../domain/cidade/CidadeService'
+    import permission from '../../mixins/permission'
 
     export default {
         data () {
@@ -99,6 +100,7 @@
                 errors: []
             }
         },
+        mixins: [permission],
         created () {
             this.service = new GlobalService(this.$router)
             this.estados = new EstadoService(this.$resource)

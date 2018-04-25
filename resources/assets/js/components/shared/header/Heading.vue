@@ -1,7 +1,9 @@
 <template>
 	<div>
         <message-box :status="status" :message="message"></message-box>
-        <router-link :to="url" class="ui right floated button" :class="color" v-if="url">{{ label }}</router-link>
+        <div v-if="verify">
+            <router-link :to="url" class="ui right floated button" :class="color" v-if="url">{{ label }}</router-link>
+        </div>
         <h2 class="ui header floated left">
             <i :class="icone" class="icon"></i>
             <div class="content">
@@ -34,6 +36,9 @@
             label: String,
             color: String,
             status: String,
+            verify: {
+                default: true
+            },
             message: String
 		},
         components: {

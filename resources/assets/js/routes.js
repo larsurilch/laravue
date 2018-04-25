@@ -12,6 +12,8 @@ import ProprietarioShow from './components/proprietario/ProprietarioShow.vue'
 import VeiculoIndex from './components/veiculo/VeiculoIndex.vue'
 import VeiculoForm from './components/veiculo/VeiculoForm.vue'
 import VeiculoShow from './components/veiculo/VeiculoShow.vue'
+import PerfilIndex from './components/perfil/PerfilIndex.vue'
+import PerfilForm from './components/perfil/PerfilForm.vue'
 
 export const routes = [
     {
@@ -122,6 +124,27 @@ export const routes = [
     {
         path: '/veiculos/:id',
         component: VeiculoShow,
+        meta: {
+            forAuth: true
+        }
+    },
+    {
+        path: '/perfis',
+        component: PerfilIndex,
+        meta: {
+            forAuth: true
+        }
+    },
+    {
+        path: '/perfis/create',
+        component: PerfilForm,
+        meta: {
+            forAuth: true
+        }
+    },
+    {
+        path: '/perfis/:id/edit',
+        component: PerfilForm,
         meta: {
             forAuth: true
         }

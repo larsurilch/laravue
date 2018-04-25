@@ -17,6 +17,12 @@
         </div>
         <router-link v-if="permission('proprietarios.index')" to="/proprietarios" class="item">Proprietários</router-link>
         <router-link v-if="permission('veiculos.index')" to="/veiculos" class="item">Veículos</router-link>
+        <div class="ui simple dropdown item">
+            Segurança <i class="dropdown icon"></i>
+            <div class="menu">
+                <router-link v-if="permission('perfis.index')" to="/perfis" class="item">Perfis</router-link>
+            </div>
+        </div>
         <div class="right menu">
             <a class="ui item" @click.prevent="deleteAuthenticatedUser">{{ UsuarioStore.dataUser.email }} - Desconectar</a>
         </div>

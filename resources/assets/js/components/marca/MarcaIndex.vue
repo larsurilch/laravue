@@ -1,7 +1,7 @@
 <template>
     <div>
         <heading icone="registered" titulo="Marca" subtitulo="Listagem de marcas de veículos" url="/marcas/create"
-            label="Novo" color="blue" :status="status" :message="message"></heading>
+            label="Novo" color="blue" :status="status" :message="message" :verify="permission('marcas.store')"></heading>
         <search :total="params.total" @click.native="index">
             <div class="field">
                 <input v-model="filters.descricao" type="text" placeholder="Nome">
@@ -13,12 +13,12 @@
                 <td>{{ marca.created_at }}</td>
                 <td>{{ marca.updated_at }}</td>
                 <td>
-                    <router-link class="ui icon button green" :to="`/marcas/${marca.id}/edit`">
+                    <router-link v-if="permission('marcas.update')" class="ui icon button green" :to="`/marcas/${marca.id}/edit`">
                         <i class="write icon"></i>
                     </router-link>
                 </td>
                 <td>
-                    <button class="ui icon button red" @click="destroy(marca)">
+                    <button v-if="permission('marcas.destroy')" class="ui icon button red" @click="destroy(marca)">
                         <i class="trash icon"></i>
                     </button>
                 </td>
@@ -32,6 +32,7 @@
     import Search from '../shared/header/Search.vue'
     import DataGrid from '../shared/data-grid/DataGrid.vue'
     import flashMessage from '../../mixins/flashMessage'
+    import permission from '../../mixins/permission'
 
     export default {
         data () {
@@ -58,7 +59,7 @@
                 }
             }
         },
-        mixins: [flashMessage],
+        mixins: [flashMessage, permission],
         created () {
             this.index()
         },
