@@ -21,6 +21,7 @@
             Segurança <i class="dropdown icon"></i>
             <div class="menu">
                 <router-link v-if="permission('perfis.index')" to="/perfis" class="item">Perfis</router-link>
+                <router-link v-if="permission('usuarios.index')" to="/usuarios" class="item">Usuários</router-link>
             </div>
         </div>
         <div class="right menu">
