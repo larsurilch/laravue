@@ -1,52 +1,41 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Projeto prático com Laravel 5.4, Vue.js 2 e Semantic UI
 
-## About Laravel
+A idéia do projeto é demonstrar como criar do zero uma aplicação SPA, onde são apresentados conceitos e recursos de ambos os frameworks. O projeto é destinado para fins de estudo. Fique a vontade para clonar o repositório e utilizar conforme julgar necessário.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+O projeto foi desenvolvido e explicado em vários vídeos:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Instalação do Laravel, Vue.js e Semantic UI](https://www.youtube.com/watch?v=jMO9KYktU-s).
+- [Configuração e criação do front-end com Vue.js](https://www.youtube.com/watch?v=mEvaJ7R1fbI).
+- [Criação dos models e controllers de países, Estados e cidades](https://www.youtube.com/watch?v=bXUsKabqRFE).
+- [Criação das migrations, métodos nos controllers e execução dos seeds de países, estados e cidades](https://www.youtube.com/watch?v=QCl59YWyWTk).
+- [Criação de componentes e estrutura front-end com Vue.js](https://www.youtube.com/watch?v=SU8WuG5IvHI).
+- [Criação da view de listagem de países com filtro, ordenação, itens por página e paginação](https://www.youtube.com/watch?v=Zu_eBEIzx6U).
+- [Criação dos componentes Heading, Search, DataGrid](https://www.youtube.com/watch?v=heRzF794Q7E).
+- [Criação das views de listagem de Estados e cidades com filtro, ordenação, itens por página e paginação](https://www.youtube.com/watch?v=YVdA5g_VxqU).
+- [Criação da migration, controller, request e model de marcas](https://www.youtube.com/watch?v=U4aJgYdR72Q).
+- [Criação dos componentes de MessageBox, Modal e a view de listagem e remoção das marcas](https://www.youtube.com/watch?v=zNhdAtPn2iY).
+- [Criação dos componentes SubmitButton, FormError e a view formulário de marcas](https://www.youtube.com/watch?v=HkZmQb6t3vI).
+- [Criação das migrations, models de proprietários, veículos, ações, perfis e usuários. Criação de controllers e requests de proprietários e veículos](https://www.youtube.com/watch?v=r4c0bV_IGoo).
+- [Criação das views de listagem, de detalhe e formulário de proprietários e veículos](https://www.youtube.com/watch?v=xFIq7IhGxoQ).
+- [Adicionando dependências para validação de documentos e trabalhar com valores monetários. Criação de filters e componentes de telefone no front-end](https://www.youtube.com/watch?v=houmGVT7Lg0).
+- [Criação dos serviços de Estado e Cidades. Criação do componente de Dropdown](https://www.youtube.com/watch?v=Tu1vdV0dbnM).
+- [Criação dos filters de currency e person. Criação do serviço de país e do componente de calendário. Atualização dos componentes de formulários de proprietários e veículos](https://www.youtube.com/watch?v=bL-6ghD4WKc).
+- [Criação dos seeds, requests, models, controllers de ações, perfis e usuários](https://www.youtube.com/watch?v=Hy31oMkN694).
+- [Criação do middleware de ACL e controller de autenticação. Instalação e configuração do Laravel Passport. Configuração das rotas da API.](https://www.youtube.com/watch?v=ZZxb6gMsU_k).
+- [Criação do pacote de autenticação no front-end e do componente de Login. Instalação e configuração do Vuex.](https://www.youtube.com/watch?v=2UHicFegueI).
+- [Criação do permissionamento no front-end. Criação dos serviços de ação e perfis.](https://www.youtube.com/watch?v=sBjUQY_bjhY).
+- [Criação do componente de Checkbox, das views de listagem e formulário de perfis](https://www.youtube.com/watch?v=lHUymAEPCvg).
+- [Criação das views de listagem e formulário de usuário ](https://www.youtube.com/watch?v=RmwAFoYWiak).
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+## Comandos, pacotes e execução do projeto
 
-## Learning Laravel
+Todos os comandos, pacotes e bibliotecas para uso e execução do projeto estão nos vídeos acima.
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+## Correções
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
-
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Para qualquer dúvida ou relato de bugs, por favor, deixe-os aqui no GitHub. Farei o possível para resolver o mais rápido possível.
 
 ## License
 
